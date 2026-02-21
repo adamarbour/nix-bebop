@@ -5,7 +5,9 @@ let
     system = builtins.currentSystem;
     overlays = [ overlays.default ];
   };
-  lib = pkgs.lib;
+  lib = pkgs.lib.extend ( final: prev: {
+    bebop = import ./lib/bebop.nix { lib = prev; };
+  });
 in {
   inherit sources pkgs lib;
 }

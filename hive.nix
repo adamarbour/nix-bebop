@@ -32,6 +32,7 @@ in {
   # spike : Lenovo z13 gen1 / 32GB / 1TB / Radeon 690m
   spike = {
     config = {
+      sys.profile = "laptop";
       time.timeZone = "America/Chicago";
       deployment = {
         allowLocalDeployment = true;
