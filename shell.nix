@@ -11,6 +11,8 @@ pkgs.mkShellNoCC {
     lon
     colmena
     git
+    dix
+    cachix
     # keep-sorted end
   ];
 }
