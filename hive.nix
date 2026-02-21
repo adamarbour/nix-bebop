@@ -7,7 +7,7 @@ in {
     name = "nix-bebop";
     description = "easy come. easy go.";
     nixpkgs = pkgs;
-    specialArgs = { inherit sources lib; _class = null; };
+    specialArgs = { inherit sources lib; };
   };
   defaults = { lib, name, ... }:
   {

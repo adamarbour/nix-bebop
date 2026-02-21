@@ -8,7 +8,6 @@
     ./system/fonts.nix
     ./system/version.nix
     ./system/packages.nix
-    ./system/vars.nix
     ./system/platform.nix
     # keep-sorted end
   ];

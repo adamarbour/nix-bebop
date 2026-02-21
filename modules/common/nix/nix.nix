@@ -1,14 +1,11 @@
 { lib, config, sources, ... }:
 let
-  inherit (lib) mkDefault;
+  inherit (lib) mkDefault mkForce;
 in {
   nix = {
     channel.enable = false;
-    nix.registry.nixpkgs.to = {
-      type = "path";
-      path = sources.nixpkgs;
-    };
-    nix.nixPath = ["nixpkgs=flake:nixpkgs"];
+    registry.nixpkgs = mkForce { flake = sources.nixpkgs; };
+    nixPath = ["nixpkgs=flake:nixpkgs"];
 
     optimise = {
       automatic = mkDefault (!config.boot.isContainer);

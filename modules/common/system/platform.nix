@@ -5,8 +5,18 @@ let
 in {
   options.sys = {
     class = mkOption {
-      types = types.str;
+      type = types.nullOr types.str;
       default = _class;
+      internal = true;
+    };
+    isLinux = mkOption {
+      type = types.bool;
+      default = platform.isLinux;
+      internal = true;
+    };
+    isDarwin = mkOption {
+      type = types.bool;
+      default = platform.isDarwin;
       internal = true;
     };
     isX86 = mkOption {

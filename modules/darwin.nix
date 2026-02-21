@@ -1,9 +1,9 @@
 {
   imports = [
-    ( {...}: { _module.args._class = "nixos"; } )
+    ( {...}: { _module.args._class = "darwin"; } )
     # keep-sorted start
     ./common
-    ./nixos
+    ./darwin
     # keep-sorted end
   ];
 }
