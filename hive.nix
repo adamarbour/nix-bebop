@@ -1,4 +1,4 @@
-{ sources ? ./lon.nix }:
+{ sources ? import ./lon.nix }:
 let
   root = import ./default.nix {};
   inherit (root) pkgs lib;
@@ -7,7 +7,7 @@ in {
     name = "nix-bebop";
     description = "easy come. easy go.";
     nixpkgs = pkgs;
-    specialArgs = { inherit sources lib; };
+    specialArgs = { inherit sources lib; enableHM = true; }; # Allow per-host disable of home-manager
   };
   defaults = { lib, name, ... }:
   {

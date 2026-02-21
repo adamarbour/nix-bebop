@@ -9,6 +9,7 @@
     ./system/version.nix
     ./system/packages.nix
     ./system/platform.nix
+    ./profiles.nix
     # keep-sorted end
   ];
 }
