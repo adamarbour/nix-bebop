@@ -1,11 +1,19 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
   c = config.sys;
+  prime = config.sys.hw.prime;
 in {
   config = mkIf (c.isLaptop) {
-    sys.hw.brillo.enable = true;
-    sys.hw.trackpad.enable = true;
-    sys.hw.thunderbolt.enable = true;
+    # HARDWARE DEFAULTS
+    sys.hw.brillo.enable = mkDefault true;
+    sys.hw.trackpad.enable = mkDefault true;
+    sys.hw.thunderbolt.enable = mkDefault true;
+    
+    # PRIME (nvidia) DEFAULTS
+    sys.hw.prime = mkIf (prime.enable) {
+      dynamicBoost = mkDefault true;
+      finegrainedPM = mkDefault true;
+    };
   };
 }
