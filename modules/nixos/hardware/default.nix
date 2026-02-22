@@ -12,6 +12,10 @@
     ./sound.nix
     ./graphics.nix
     ./yubikey.nix
+    ./bluetooth.nix
+    ./thunderbolt.nix
+    ./gpu.nix
+    ./i2c.ix
     # keep-sorted end
   ];
 }
