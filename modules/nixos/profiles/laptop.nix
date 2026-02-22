@@ -6,5 +6,6 @@ in {
   config = mkIf (c.isLaptop) {
     sys.hw.brillo.enable = true;
     sys.hw.trackpad.enable = true;
+    sys.hw.thunderbolt.enable = true;
   };
 }
