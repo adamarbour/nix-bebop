@@ -1,9 +1,9 @@
 {
   imports = [
     # keep-sorted start
-    ./boot
-    ./nix
-    ./extras.nix
+    ./nix.nix
+    ./nix-daemon.nix
+    ./emulation.nix
     # keep-sorted end
   ];
 }
