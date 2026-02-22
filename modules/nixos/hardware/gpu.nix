@@ -1,4 +1,4 @@
-{ lib, config ... }:
+{ lib, pkgs, config, ... }:
 let
   inherit (lib) types mkOption mkMerge mkIf;
   c = config.sys.hw;

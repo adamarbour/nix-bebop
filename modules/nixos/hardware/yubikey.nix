@@ -10,7 +10,7 @@ in {
   config = mkIf (c.enable) {
     hardware.gpgSmartcards.enable = true;
     
-    services.pcsdc.enable = true;
+    services.pcscd.enable = true;
     services.udev.packages = [ pkgs.yubikey-personalization ];
     
     sys.packages  = {

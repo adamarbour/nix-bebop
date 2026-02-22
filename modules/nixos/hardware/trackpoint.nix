@@ -1,6 +1,6 @@
 { lib, pkgs, config, ...}:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkDefault;
   c = config.sys.hw.trackpoint;
 in {
   options.sys.hw.trackpoint = {

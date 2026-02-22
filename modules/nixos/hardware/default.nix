@@ -15,7 +15,9 @@
     ./bluetooth.nix
     ./thunderbolt.nix
     ./gpu.nix
-    ./i2c.ix
+    ./i2c.nix
+    ./prime.nix
+    ./fprint.nix
     # keep-sorted end
   ];
 }

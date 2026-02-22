@@ -10,7 +10,7 @@ in {
         interval = "weekly";
       };
     }
-    (mkIf hsBtrfs {
+    (mkIf hasBtrfs {
       services.btrfs.autoScrub = {
         enable = true;
         interval = "weekly";
