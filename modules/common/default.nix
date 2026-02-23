@@ -10,6 +10,8 @@
     ./system/packages.nix
     ./system/platform.nix
     ./profiles.nix
+    ./users.nix
+    ./secrets.nix
     # keep-sorted end
   ];
 }
