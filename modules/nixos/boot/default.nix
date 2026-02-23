@@ -6,6 +6,7 @@
     ./silentBoot.nix
     ./tmp.nix
     ./loader.nix
+    ./initrd.nix
     # keep-sorted end
   ];
 }
