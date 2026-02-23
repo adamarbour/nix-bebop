@@ -6,6 +6,7 @@
     ./profiles
     ./hardware
     ./kernel
+    ./users
     ./extras.nix
     # keep-sorted end
   ];
