@@ -8,6 +8,7 @@
     ./kernel
     ./users
     ./network
+    ./security
     ./extras.nix
     ./impermanence.nix
     # keep-sorted end

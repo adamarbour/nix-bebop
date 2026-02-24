@@ -10,5 +10,8 @@ in {
     
     # SERVICE DEFAULTS
     sys.services.tailscale.enable = mkDefault true;
+    
+    # SERVER SPECIFIC
+    sys.security.auditd.enable = mkDefault true;
   };
 }
