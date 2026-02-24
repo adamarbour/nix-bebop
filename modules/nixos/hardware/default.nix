@@ -19,6 +19,7 @@
     ./prime.nix
     ./fprint.nix
     ./colord.nix
+    ./power.nix
     # keep-sorted end
   ];
 }
