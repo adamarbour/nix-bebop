@@ -10,6 +10,9 @@
     ./zram.nix
     ./appImage.nix
     ./serial.nix
+    ./server.nix
+    ./terminfo.nix
+    ./journald.nix
     # keep-sorted end
   ];
 }
