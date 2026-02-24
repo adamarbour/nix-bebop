@@ -8,6 +8,7 @@ in {
   };
   
   config = mkIf (c.enable) {
+    environment.systemPackages = with pkgs; [ sbctl ];
     security.tpm2 = {
       enable = true;
       abrmd.enable = false;
