@@ -5,6 +5,7 @@ let
   prime = config.sys.h.prime;
 in {
   config = mkIf (c.isDesktop) {
-
+    # NETWORK DEFAULTS
+    sys.network.networkManager.enable = mkDefault true;
   };
 }
