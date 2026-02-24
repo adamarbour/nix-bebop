@@ -12,6 +12,9 @@
     ./systemd.nix
     ./tailscale.nix
     ./firewall.nix
+    ./fail2ban.nix
+    ./optimizeTcp.nix
+    ./openssh.nix
     # keep-sorted end
   ];
 }
