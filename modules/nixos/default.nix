@@ -10,8 +10,10 @@
     ./network
     ./security
     ./environment
+    ./services
     ./extras.nix
     ./impermanence.nix
+    ./secrets.nix
     # keep-sorted end
   ];
 }
