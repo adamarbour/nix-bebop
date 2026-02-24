@@ -14,6 +14,7 @@
     ./extras.nix
     ./impermanence.nix
     ./secrets.nix
+    ./displayManager.nix
     # keep-sorted end
   ];
 }

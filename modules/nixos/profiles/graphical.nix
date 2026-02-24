@@ -18,6 +18,7 @@ in {
     
     # SERVICE DEFAULTS
     sys.services.xserver.enable = mkDefault true;
+    sys.services.xdg-portals.enable = mkDefault true;
     sys.services.gvfs.enable = mkDefault true;
     sys.services.gnome-keyring.enable = mkDefault true;
     sys.services.gnome-settings.enable = mkDefault true;
@@ -25,5 +26,8 @@ in {
     sys.services.seatd.enable = mkDefault true;
     sys.services.geoclue.enable = mkDefault true;
     sys.services.tailscale.enable = mkDefault true;
+    
+    # DISPLAY MANAGER
+    sys.displayManager.sddm.enable = true;
   };
 }
