@@ -15,6 +15,7 @@
     ./smartd.nix
     ./keyd.nix
     ./xdg-portals.nix
+    ./udisks.nix
     # keep-sorted end
   ];
 }

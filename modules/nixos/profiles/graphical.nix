@@ -25,6 +25,7 @@ in {
     sys.services.glib-networking.enable = mkDefault true;
     sys.services.seatd.enable = mkDefault true;
     sys.services.geoclue.enable = mkDefault true;
+    sys.services.udisks2.enable = mkDefault true;
     sys.services.tailscale.enable = mkDefault true;
     
     # DISPLAY MANAGER
