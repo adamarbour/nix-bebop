@@ -13,6 +13,8 @@
     ./glib-networking.nix
     ./gnome-keyring.nix
     ./smartd.nix
+    ./keyd.nix
+    ./xdg-portals.nix
     # keep-sorted end
   ];
 }
