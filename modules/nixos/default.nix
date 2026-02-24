@@ -9,6 +9,7 @@
     ./users
     ./network
     ./security
+    ./environment
     ./extras.nix
     ./impermanence.nix
     # keep-sorted end
