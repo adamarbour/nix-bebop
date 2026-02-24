@@ -61,6 +61,16 @@
       "url": "https://github.com/nixos/nixpkgs/archive/0182a361324364ae3f436a63005877674cf45efb.tar.gz",
       "hash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ="
     },
+    "secrets": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "adamarbour",
+      "repo": "banque",
+      "branch": "main",
+      "revision": "e008de513a1eb7af8ea3f7cb0c5f8c004442fd56",
+      "url": "https://github.com/adamarbour/banque/archive/e008de513a1eb7af8ea3f7cb0c5f8c004442fd56.tar.gz",
+      "hash": "sha256-s4aMpVcR/eBMSGkrzQWE4GYRVSG0WHFFOpDPMUVil/c="
+    },
     "sops-nix": {
       "type": "GitHub",
       "fetchType": "tarball",
