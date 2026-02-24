@@ -13,6 +13,9 @@ in {
     sys.boot.silentBoot.enable = mkDefault true;
     sys.boot.plymouth.enable = mkDefault true;
     
+    # NETWORK DEFAULTS
+    sys.network.optimizeTcp.enable = mkDefault true;
+    
     # SERVICE DEFAULTS
     sys.services.tailscale.enable = mkDefault true;
   };
