@@ -7,7 +7,9 @@
     ./hardware
     ./kernel
     ./users
+    ./network
     ./extras.nix
+    ./impermanence.nix
     # keep-sorted end
   ];
 }
