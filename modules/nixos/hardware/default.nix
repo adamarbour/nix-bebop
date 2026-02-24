@@ -18,6 +18,7 @@
     ./i2c.nix
     ./prime.nix
     ./fprint.nix
+    ./colord.nix
     # keep-sorted end
   ];
 }
