@@ -17,6 +17,13 @@ in {
     sys.network.optimizeTcp.enable = mkDefault true;
     
     # SERVICE DEFAULTS
+    sys.services.xserver.enable = mkDefault true;
+    sys.services.gvfs.enable = mkDefault true;
+    sys.services.gnome-keyring.enable = mkDefault true;
+    sys.services.gnome-settings.enable = mkDefault true;
+    sys.services.glib-networking.enable = mkDefault true;
+    sys.services.seatd.enable = mkDefault true;
+    sys.services.geoclue.enable = mkDefault true;
     sys.services.tailscale.enable = mkDefault true;
   };
 }
