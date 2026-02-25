@@ -8,7 +8,7 @@ in {
   };
   
   config = mkIf (c.enable) {
-    sys.persist.files = [
+    sys.persist.storage.files = [
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
     ];

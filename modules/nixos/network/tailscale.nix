@@ -15,7 +15,7 @@ in {
       allowedUDPPorts = [ tailscale.port ];
     };
     
-    sys.persist.directories = [ "/var/lib/tailscale" ];
+    sys.persist.storage.directories = [ "/var/lib/tailscale" ];
     
     services.tailscale = {
       enable = true;

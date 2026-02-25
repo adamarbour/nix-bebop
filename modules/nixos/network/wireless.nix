@@ -22,7 +22,7 @@ in {
     # enable wireless database, it helps keeping wifi speedy
     hardware.wirelessRegulatoryDatabase = true;
     
-    sys.scratch.directories = optionals (c.backend == "iwd") [
+    sys.persist.scratch.directories = optionals (c.backend == "iwd") [
       "/var/lib/iwd"
     ]
     ++ optionals (c.backend == "wpa_supplicant") [

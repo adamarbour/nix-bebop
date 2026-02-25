@@ -30,7 +30,7 @@ in {
       ];
     };
     
-    sys.scratch.directories = [
+    sys.persist.scratch.directories = [
       "/var/lib/NetworkManager"
       "/etc/NetworkManager/system-connections"
     ];

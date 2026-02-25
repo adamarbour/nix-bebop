@@ -15,13 +15,14 @@ in {
         enable = true;
       };
       
-      systemd.tmpfiles.rules = [
-        "d /var/lib/sddm 0755 sddm sddm"
-        "d /var/lib/sddm/.config 0755 sddm sddm"
-        "d /var/lib/sddm/.config/hypr 0755 sddm sddm"
+      sys.persist.scratch.directories = [
+        {
+          directory = "/var/lib/sddm";
+          user = "sddm";
+          group = "sddm";
+          mode = 755;
+        }
       ];
-      
-      sys.scratch.directories = [ "/var/lib/sddm" ];
     })
   ];
 }

@@ -9,6 +9,13 @@ in {
   
   config = mkIf (c.enable) {
     services.colord.enable = true;
-    sys.scratch.directories = [ "/var/lib/colord" ];
+    sys.persist.scratch.directories = [
+      {
+        directory = "/var/lib/colord";
+        user = "colord";
+        group = "colord";
+        mode = "u=rwx,g=rx,o=";
+      }
+    ];
   };
 }

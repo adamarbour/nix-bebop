@@ -1,144 +1,135 @@
 { lib, config, ... }:
 let
-  inherit (lib) types mapAttrs' nameValuePair mkOption mkEnableOption mkIf;
-  c = config.sys.impermanence;
-  persist = config.sys.persist;
-  scratch = config.sys.scratch;
-  
-  # Handle user persistence
-  persistUsers = mapAttrs' ( u: uCfg:
-    nameValuePair u { inherit (uCfg) directories files; }
-  ) persist.users;
-  scratchUsers = mapAttrs' ( u: uCfg:
-    nameValuePair u { inherit (uCfg) directories files; }
-  ) scratch.users;
+  inherit (builtins) attrNames baseNameOf mapAttrs;
+  inherit (lib) genAttrs mkAfter mkOption mkMerge types unique mkIf;
+  c = config.sys.persist;
+  users = config.home-manager.users or {};
 in {
-  options.sys.impermanence = {
-    enable = mkEnableOption "enable impermanence on the system";
-    persistRoot = mkOption {
-      type = types.path;
+  options.sys.persist = {
+    enable = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        enable persistent storage location
+      '';
+    };
+    path = mkOption {
+      type = types.str;
       default = "/persist";
       description = ''
-        base directory used by impermanence that is included in backups and snapshots.
+        path to the main persist mount
       '';
     };
-    scratchRoot = mkOption {
-      type = types.path;
-      default = "/scratch";
-      description = ''
-        base directory used to keep files through reboots (not backed up).
-      '';
+    
+    # survives reboots and is backed up
+    storage = {
+      path = mkOption {
+        type = types.str;
+        default = "${c.path}/storage";
+      };
+      directories = mkOption {
+        type = with types; listOf (either str attrs);
+        default = [];
+        description = ''
+          system directories to persist reboots and snapshot
+        '';
+        example = [ "/etc/nixos" ];
+      };
+      files = mkOption {
+        type = with types; listOf (either str attrs);
+        default = [];
+        description = ''
+          system files to persist reboots and snapshot
+        '';
+        example = [ "/etc/machine-id" ];
+      };
     };
-  };
-  
-  options.sys.persist = {
-    directories = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = ''
-        additional paths (absolute) to persist in `persist` root.
-      '';
-    };
-    files = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = ''
-        additional files (absolute) to persist in `persist` root.
-      '';
-    };
-    users = mkOption {
-      type = types.attrsOf (types.submodule {
-        options = {
-          directories = mkOption {
-            type = types.listOf types.str;
-            default = [];
-            description = "per-user directories (relative to $HOME) to persist";
-          };
-          files = mkOption {
-            type = types.listOf types.str;
-            default = [];
-            description = "per-user files (relative to $HOME) to persist";
-          };
-        };
-      });
-      default = {};
-      description = ''
-        per-user persist entries (relative to $HOME)
-      '';
-    };
-  };
-  options.sys.scratch = {
-    directories = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = ''
-        additional paths (absolute) to persist in `scratch` root.
-      '';
-    };
-    files = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = ''
-        additional files (absolute) to persist in `scratch` root.
-      '';
-    };
-    users = mkOption {
-      type = types.attrsOf (types.submodule {
-        options = {
-          directories = mkOption {
-            type = types.listOf types.str;
-            default = [];
-            description = "per-user directories (relative to $HOME) to persist";
-          };
-          files = mkOption {
-            type = types.listOf types.str;
-            default = [];
-            description = "per-user files (relative to $HOME) to persist";
-          };
-        };
-      });
-      default = {};
-      description = ''
-        per-user persist entries (relative to $HOME)
-      '';
+    
+    # survives reboots but is not backed up
+    scratch = {
+      path = mkOption {
+        type = types.str;
+        default = "${c.path}/scratch";
+      };
+      directories = mkOption {
+        type = with types; listOf (either str attrs);
+        default = [];
+        description = ''
+          system directories to persist reboots and snapshot
+        '';
+        example = [ "/etc/nixos" ];
+      };
+      files = mkOption {
+        type = with types; listOf (either str attrs);
+        default = [];
+        description = ''
+          system files to persist reboots and snapshot
+        '';
+        example = [ "/etc/machine-id" ];
+      };
     };
   };
   
   config = mkIf (c.enable) {
-    fileSystems = {
-      "${c.persistRoot}".neededForBoot = true;
-      "${c.scratchRoot}".neededForBoot = true;
-    };
-  
     programs.fuse.userAllowOther = true;
-    systemd.tmpfiles.rules = [
-      "d ${c.persistRoot} 0755 root root -"
-      "d ${c.scratchRoot} 0755 root root -"
-      "d ${c.persistRoot}/home 0755 root users -"
-      "d ${c.scratchRoot}/home 0755 root users -"
-    ];
     
-    environment.persistence."${c.persistRoot}" = {
+    fileSystems = let
+      # List all non-hidden user dirs
+      userDirs = type:
+        map (x: x.dirPath)
+        (builtins.filter (d: builtins.substring 0 1 d.directory != "." && d.home != null)
+          config.environment.persistence."${c."${type}".path}".directories);
+      in mkMerge [
+        # Support trash in the bind mounts
+        ( genAttrs
+          ((userDirs "scratch") ++ (userDirs "storage"))
+          (_: {options = ["x-gvfs-trash"];})
+        )
+        # Persist volumes need to be marked with neededForBoot
+        {"${c.path}".neededForBoot = true;}
+      ];
+    
+    # persist without snapshots
+    environment.persistence."${c.scratch.path}" = {
+      inherit (c) enable;
       hideMounts = true;
-      inherit (persist) directories;
-      inherit (persist) files;
-      users = persistUsers;
+      directories = unique ([
+          "/var/lib/systemd/coredump"
+          "/var/cache/nix"
+          "/var/log"
+        ] ++ c.scratch.directories);
+      files = unique ([] ++ c.scratch.files);
+      
+      # Persist user data
+      users = mapAttrs (_: user: {
+        directories = unique ([
+          ".scratch"
+        ] ++ user.persist.scratch.directories);
+        files = unique user.persist.scratch.files;
+      }) users;
     };
     
-    # Scratch persist is not meant to be backed up but just kept through reboots
-    environment.persistence."${c.scratchRoot}" = {
+    # persist with snapshots
+    environment.persistence."${c.storage.path}" = {
+      inherit (c) enable;
       hideMounts = true;
-      inherit (scratch) directories;
-      inherit (scratch) files;
-      users = scratchUsers;
+      directories = unique ([
+          "/var/lib/nixos"
+        ] ++ c.storage.directories);
+      files = unique ([] ++ c.storage.files);
+      
+      # Persist user data
+      users = mapAttrs (_: user: {
+        directories = unique ([
+          ".persist"
+          ".ssh"
+        ] ++ user.persist.storage.directories);
+        files = unique ([
+          ".bashrc"
+          ".bash_history"
+        ] ++ user.persist.storage.files);
+      }) users;
     };
     
-    # Default scratch directories to add ...
-    sys.scratch.directories = [
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/var/cache/nix"
-      "/var/log"
-    ];
   };
 }
