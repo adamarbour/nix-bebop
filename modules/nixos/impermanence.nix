@@ -14,7 +14,7 @@ in {
     };
     path = mkOption {
       type = types.str;
-      default = "/persist";
+      default = "/nix";
       description = ''
         path to the main persist mount
       '';
@@ -24,7 +24,7 @@ in {
     storage = {
       path = mkOption {
         type = types.str;
-        default = "${c.path}/store";
+        default = "${c.path}/persist";
       };
       directories = mkOption {
         type = with types; listOf (either str attrs);

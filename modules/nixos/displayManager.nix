@@ -20,7 +20,7 @@ in {
           directory = "/var/lib/sddm";
           user = "sddm";
           group = "sddm";
-          mode = 755;
+          mode = "u=rwx,g=rx,o=rx";
         }
       ];
     })

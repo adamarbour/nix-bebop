@@ -1,10 +1,13 @@
 { lib, config, sources, ... }:
 let
-  inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault;
 in {
   nix = {
     channel.enable = false;
-    registry.nixpkgs = mkForce { flake = sources.nixpkgs; };
+    registry.nixpkgs.to = {
+      type = "path";
+      path = sources.nixpkgs;
+    };
     nixPath = ["nixpkgs=flake:nixpkgs"];
 
     optimise = {

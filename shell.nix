@@ -4,6 +4,7 @@
 }:
 pkgs.mkShellNoCC {
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+  NIXPKGS_ALLOW_UNFREE = "1";
   NIX_PATH = "nixpkgs=${pkgs.path}";
   
   packages = with pkgs; [

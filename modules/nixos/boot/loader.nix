@@ -40,7 +40,7 @@ in {
       enableEditor = mkDefault false;
       
       # bios
-      biosSupport = (!c.efiSupport);
+      biosSupport = (!c.efi.enable);
       biosDevice = c.bios.device;
       
       # efi

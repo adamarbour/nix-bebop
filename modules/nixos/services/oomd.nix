@@ -9,8 +9,8 @@ in {
   
   config = mkIf (c.enable) {
     systemd = {
-      services.nix-daemon.serviceConfig.OOMScoreAdjust = mkDefault 350;
-      services.sshd.serviceConfig.OOMScoreAdjust = mkDefault -900;
+      services.nix-daemon.serviceConfig.OOMScoreAdjust = mkDefault "350";
+      services.sshd.serviceConfig.OOMScoreAdjust = mkDefault "-900";
       oomd = {
         enable = mkDefault true;
         
