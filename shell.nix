@@ -12,6 +12,7 @@ pkgs.mkShellNoCC {
     colmena
     git
     dix
+    disko
     cachix
     # keep-sorted end
   ];

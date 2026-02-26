@@ -1,4 +1,7 @@
 {
+  imports [
+    ./disk.nix { device = "/dev/nvme0n1"; }
+  ];
   # Baseline hardware. Will override profile defaults.
   sys.hw = {
     cpu = "amd";
