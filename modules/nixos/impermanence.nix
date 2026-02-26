@@ -3,7 +3,6 @@ let
   inherit (builtins) attrNames baseNameOf mapAttrs;
   inherit (lib) genAttrs mkAfter mkOption mkMerge types unique mkIf;
   c = config.sys.persist;
-  users = config.home-manager.users or {};
 in {
   options.sys.persist = {
     enable = mkOption {
@@ -25,7 +24,7 @@ in {
     storage = {
       path = mkOption {
         type = types.str;
-        default = "${c.path}/storage";
+        default = "${c.path}/store";
       };
       directories = mkOption {
         type = with types; listOf (either str attrs);
@@ -72,22 +71,7 @@ in {
   
   config = mkIf (c.enable) {
     programs.fuse.userAllowOther = true;
-    
-    fileSystems = let
-      # List all non-hidden user dirs
-      userDirs = type:
-        map (x: x.dirPath)
-        (builtins.filter (d: builtins.substring 0 1 d.directory != "." && d.home != null)
-          config.environment.persistence."${c."${type}".path}".directories);
-      in mkMerge [
-        # Support trash in the bind mounts
-        ( genAttrs
-          ((userDirs "scratch") ++ (userDirs "storage"))
-          (_: {options = ["x-gvfs-trash"];})
-        )
-        # Persist volumes need to be marked with neededForBoot
-        {"${c.path}".neededForBoot = true;}
-      ];
+    fileSystems."${c.path}".neededForBoot = true;
     
     # persist without snapshots
     environment.persistence."${c.scratch.path}" = {
@@ -99,14 +83,7 @@ in {
           "/var/log"
         ] ++ c.scratch.directories);
       files = unique ([] ++ c.scratch.files);
-      
-      # Persist user data
-      users = mapAttrs (_: user: {
-        directories = unique ([
-          ".scratch"
-        ] ++ user.persist.scratch.directories);
-        files = unique user.persist.scratch.files;
-      }) users;
+      # TODO: Handle users from sys.users;
     };
     
     # persist with snapshots
@@ -117,18 +94,7 @@ in {
           "/var/lib/nixos"
         ] ++ c.storage.directories);
       files = unique ([] ++ c.storage.files);
-      
-      # Persist user data
-      users = mapAttrs (_: user: {
-        directories = unique ([
-          ".persist"
-          ".ssh"
-        ] ++ user.persist.storage.directories);
-        files = unique ([
-          ".bashrc"
-          ".bash_history"
-        ] ++ user.persist.storage.files);
-      }) users;
+      # TODO: Handle users from sys.users;
     };
     
   };
