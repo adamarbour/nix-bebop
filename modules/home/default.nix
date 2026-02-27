@@ -1,6 +1,6 @@
 {
   imports = [
+    ./home.nix
     ./impermanence.nix
-    ./tmpfiles.nix
   ];
 }
