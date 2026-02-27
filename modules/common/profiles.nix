@@ -2,7 +2,7 @@
  let
   inherit (lib) types mkOption;
   p = config.sys.profile or null;
-  profileList = [ "desktop" "laptop" "server" "virtual" ];
+  profileList = [ "desktop" "laptop" "server" ];
  in {
   options.sys = {
     profile = mkOption {
@@ -34,11 +34,6 @@
     isContainer = mkOption {
       type = types.bool;
       default = (config.boot.isContainer);
-      readOnly = true;
-    };
-    isVM = mkOption {
-      type = types.bool;
-      default = p == "virtual";
       readOnly = true;
     };
   };
