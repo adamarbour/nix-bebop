@@ -1,11 +1,9 @@
-{ sources ? import ./lon.nix }:
+{ sources ? import ./lon.nix, system ? builtins.currentSystem }:
 let
   overlays = import ./overlays { inherit sources; };
   pkgs = import sources.nixpkgs {
-    system = builtins.currentSystem; # TODO: we may need to eventually pass this in for other systems.
-    overlays = [
-      overlays.default
-    ];
+    localSystem = { inherit system; };
+    overlays = [ overlays.default ];
   };
   lib = pkgs.lib.extend ( final: prev: {
     bebop = import ./lib/bebop.nix { lib = prev; };

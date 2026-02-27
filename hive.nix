@@ -15,6 +15,7 @@ in {
       ( { ... }: { _module.args.lib = lib; } ) # myLib
       ./modules/nixos.nix
       ./systems/${name}/configuration.nix
+      ./homes
     ];
     config = {
       networking.hostName = name;
