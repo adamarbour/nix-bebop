@@ -15,7 +15,6 @@
     ./impermanence.nix
     ./secrets.nix
     ./displayManager.nix
-    ./tmpfiles.nix
     # keep-sorted end
   ];
 }

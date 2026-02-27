@@ -4,10 +4,10 @@ let
 in {
   config = {
     networking.timeServers = [
-      "time.nist.gov"
-      "time-a.nist.gov"
-      "time-b.nist.gov"
-      "time-c.nist.gov"
+      "0.pool.ntp.org"
+      "1.pool.ntp.org"
+      "2.pool.ntp.org"
+      "3.pool.ntp.org"
     ];
     services.ntpd-rs = {
       enable = true;

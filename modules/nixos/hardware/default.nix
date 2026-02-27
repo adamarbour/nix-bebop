@@ -20,6 +20,7 @@
     ./fprint.nix
     ./colord.nix
     ./power.nix
+    ./virtual.nix
     # keep-sorted end
   ];
 }

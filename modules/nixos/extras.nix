@@ -1,10 +1,10 @@
-{ lib, sources, config, enableHM ? true, ... }:
+{ lib, sources, config, ... }:
 {
   imports = [
     (sources.disko + "/module.nix") # disko
     (sources.sops-nix + "/modules/sops") # sops-nix
     (sources.impermanence + "/nixos.nix") # impermanence
-  ] ++ lib.optionals (enableHM) [
-    (sources.home-manager + "/nixos")
+    (sources.home-manager + "/nixos") # home-manager
+    (sources.nix-topology + "/nixos/module.nix") # nix-topology
   ];
 }
