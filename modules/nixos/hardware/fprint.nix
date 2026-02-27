@@ -4,7 +4,7 @@ let
   c = config.sys.hw.fprint;
   
   pamServices = [
-    "login"
+  #  "login"
     "sudo"
     "greetd"
     "sddm"

@@ -13,6 +13,7 @@ in {
       enable = true;
       useNetworkingTimeServers = true;
       settings.observability.log-level = "warn";
+      settings.synchronization.algorithm.step-threshold = 10.0;
     };
     services.ntp.enable = mkForce false;
     services.timesyncd.enable = mkForce false;

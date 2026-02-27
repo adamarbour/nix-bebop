@@ -19,6 +19,10 @@ in {
     # Enable IPv6 privacy extensions for systemd-networkd.
     systemd.network.config.networkConfig.IPv6PrivacyExtensions = mkDefault "kernel";
     
+    # Workaround for CVE-2025-32438
+    # https://github.com/NixOS/nixpkgs/security/advisories/GHSA-m7pq-h9p4-8rr4
+    systemd.shutdownRamfs.enable = false;
+    
     # Ensure nixos is owned by root and homes are owned by the respective users.
     systemd.tmpfiles.rules = [
       "d /etc/nixos 0700 root root -"

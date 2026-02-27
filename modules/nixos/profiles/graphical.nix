@@ -29,6 +29,6 @@ in {
     sys.services.tailscale.enable = mkDefault true;
     
     # DISPLAY MANAGER
-    sys.displayManager.sddm.enable = true;
+    #sys.displayManager.sddm.enable = true;
   };
 }
