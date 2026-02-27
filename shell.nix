@@ -15,6 +15,7 @@ pkgs.mkShellNoCC {
     dix
     disko
     cachix
+    nixos-anywhere
     # keep-sorted end
   ];
 }

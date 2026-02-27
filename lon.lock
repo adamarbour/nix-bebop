@@ -11,6 +11,16 @@
       "url": "https://github.com/catppuccin/where-is-my-sddm-theme/archive/82a36df79ab596b9fbe85c86d3c2f3a1e39433af.tar.gz",
       "hash": "sha256-f6d7bJoSbFzEhAIfilxNLQGtAMQWTtUTube/pTqP7AY="
     },
+    "colmena": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "zhaofengli",
+      "repo": "colmena",
+      "branch": "stable",
+      "revision": "5fdd743a11e7291bd8ac1e169d62ba6156c99be4",
+      "url": "https://github.com/zhaofengli/colmena/archive/5fdd743a11e7291bd8ac1e169d62ba6156c99be4.tar.gz",
+      "hash": "sha256-01bfuSY4gnshhtqA1EJCw2CMsKkAx+dHS+sEpQ2+EAQ="
+    },
     "disko": {
       "type": "GitHub",
       "fetchType": "tarball",
@@ -40,6 +50,16 @@
       "revision": "7b1d382faf603b6d264f58627330f9faa5cba149",
       "url": "https://github.com/nix-community/impermanence/archive/7b1d382faf603b6d264f58627330f9faa5cba149.tar.gz",
       "hash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y="
+    },
+    "nix-topology": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "oddlama",
+      "repo": "nix-topology",
+      "branch": "main",
+      "revision": "b493b9b970388d79129ce1a92a6b060c9305386f",
+      "url": "https://github.com/oddlama/nix-topology/archive/b493b9b970388d79129ce1a92a6b060c9305386f.tar.gz",
+      "hash": "sha256-gFyFAFYYoNsvd6heI0XtDMIa4pnykjwDljS7dQm45uE="
     },
     "nixpkgs": {
       "type": "GitHub",

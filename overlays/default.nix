@@ -12,7 +12,9 @@ let
       config = prev.config;
     };
   };
+  topology = import "${sources.nix-topology}/pkgs/default.nix";
 in {
   default = final: prev:
+    (topology final prev) //
     (unstable-nixpkgs final prev) // (stable-nixpkgs final prev);
 }
