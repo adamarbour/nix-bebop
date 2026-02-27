@@ -7,8 +7,6 @@
     ./sudo.nix
     ./polkit.nix
     ./auditd.nix
-    ./colmena.nix
-    ./adam.nix
     # keep-sorted end
   ];
 }

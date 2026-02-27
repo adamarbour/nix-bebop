@@ -4,6 +4,9 @@ let
   c = config.sys;
 in {
   config = mkIf (c.isServer) {
+    # DISABLE HOME MANAGER
+    hm.enable = mkDefault false;
+    
     # NETWORK DEFAULTS
     sys.network.networkd.enable = mkDefault true;
     sys.services.fail2ban.enable = mkDefault true;

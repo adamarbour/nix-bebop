@@ -21,7 +21,7 @@ in {
       trusted-users = mkAfter [ "colmena" ];
       allowed-users = mkAfter [ "colmena" ];
     };
-    
+    services.displayManager.hiddenUsers = [ "colmena"];
     sys.persist.scratch.directories = [ "/var/lib/colmena" ];
   };
 }
