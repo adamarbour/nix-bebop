@@ -24,6 +24,7 @@ in {
     sops = {
       inherit (c) defaultSopsFile;
       
+      # Pull the user's ssh key
       secrets = ( lib.foldl' ( acc: name:
 	      let
           sopsFile = "${secretsRepo}/secrets/users/${name}.yaml";
@@ -31,7 +32,7 @@ in {
           acc // {
             "users/${name}/id_ed25519" = {
               inherit sopsFile;
-              key = "id_ed25519";
+              key = "ssh/key";
               owner = name;
               group = "users";
               mode = "0600";
@@ -40,7 +41,7 @@ in {
             };
             "users/${name}/id_ed25519.pub" = {
               inherit sopsFile;
-              key = "id_ed25519_pub";
+              key = "ssh/pub";
               owner = name;
               group = "users";
               mode = "0644";

@@ -3,8 +3,8 @@ let
   inherit (lib) mkIf;
   secretsRepo = sources.secrets;
   s = config.sys.secrets;
-  root = if config.sys.persist.enable then config.sys.persist.storage.path else null;
   users = config.sys.users;
+  root = if config.sys.persist.enable then config.sys.persist.storage.path else null;
 in {
   config = mkIf (s.enable) {
     environment.systemPackages = with pkgs; [ age sops ssh-to-age ];

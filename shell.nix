@@ -19,6 +19,7 @@ pkgs.mkShellNoCC {
     age
     sops
     ssh-to-age
+    wireguard-tools
     # keep-sorted end
   ];
 }

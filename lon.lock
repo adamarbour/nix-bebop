@@ -95,11 +95,11 @@
       "type": "GitHub",
       "fetchType": "tarball",
       "owner": "adamarbour",
-      "repo": "banque",
+      "repo": "woolong-poker-night",
       "branch": "main",
-      "revision": "dde5efa9daef1bd601c06b9f835dc8e2f0de1817",
-      "url": "https://github.com/adamarbour/banque/archive/dde5efa9daef1bd601c06b9f835dc8e2f0de1817.tar.gz",
-      "hash": "sha256-j+QLTu1/K4wgNrqK/nLt+4QaEGtimsURWeUB03pFLcE="
+      "revision": "cdc0a5601619ca276338ea9e56840100c4367696",
+      "url": "https://github.com/adamarbour/woolong-poker-night/archive/cdc0a5601619ca276338ea9e56840100c4367696.tar.gz",
+      "hash": "sha256-pcxZfgnj/LQkYWkHAEtE3mGeD2zDgYyp6pcTHqMlpe0="
     },
     "sops-nix": {
       "type": "GitHub",
