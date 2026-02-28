@@ -5,23 +5,25 @@ let
 in
 {
   config = mkIf (isGraphical) {
+    # Relative to home...
     sys.persist = {
       storage.directories = [
-        "${config.xdg.configHome}"
-        "${config.xdg.userDirs.documents}"
-        "${config.xdg.userDirs.download}"
-        "${config.xdg.userDirs.desktop}"
-        "${config.xdg.userDirs.videos}"
-        "${config.xdg.userDirs.music}"
-        "${config.xdg.userDirs.pictures}"
-        "${config.home.homeDirectory}/Projects"
+        ".config"
+        "Documents"
+        "Downloads"
+        "Desktop"
+        "Media/Videos"
+        "Media/Music"
+        "Media/Pictures"
+        "Media/screenshots"
+        "Projects"
       ];
       scratch.directories = [
-        "${config.xdg.cacheHome}"
-        "${config.xdg.dataHome}"
-        "${config.xdg.stateHome}"
-        "${config.xdg.userDirs.publicShare}"
-        "${config.xdg.userDirs.templates}"
+        ".cache"
+        ".local/share"
+        ".local/state"
+        "public/share"
+        "public/templates"
       ];
     };
     
