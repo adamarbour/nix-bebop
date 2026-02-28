@@ -1,9 +1,7 @@
 {
   imports = [
     # keep-sorted start
-    ./programs
-    ./home.nix
-    ./impermanence.nix
+    ./git.nix
     # keep-sorted end
   ];
 }

@@ -10,6 +10,7 @@ in {
   config = mkIf (c.enable) {
     boot.kernelModules = [ "btusb" ];
     services.blueman.enable = true;
+    sys.persist.scratch.directories = [ "/var/lib/bluetooth/" ];
     
     hardware.bluetooth = {
       enable = true;
