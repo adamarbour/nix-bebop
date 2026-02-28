@@ -11,6 +11,9 @@ in {
     time.timeZone = mkForce null;
     services.automatic-timezoned.enable = true;
     
+    # https://github.com/NixOS/nixpkgs/issues/68489#issuecomment-1484030107
+    services.geoclue2.enableDemoAgent = mkForce true;
+    
     # handle roaming devices better
     systemd.services.automatic-timezoned = {
       serviceConfig = {
