@@ -52,6 +52,9 @@ in {
       validateChecksums = c.secureBoot.enable;
     };
     
+    environment.systemPackages = with pkgs; [ sbctl ];
+    sys.persist.storage.directories = [ "/var/lib/sbctl" ];
+    
     assertions = [
       {
         assertion = !(c.secureBoot.enable && !c.efi.enable);
