@@ -35,7 +35,7 @@ in {
     config = {
       sys.profile = "laptop";
       sys.users = [ "adam" ];
-      sys.secrets.enable = false;
+      sys.secrets.enable = true;
       time.timeZone = "America/Chicago";
       deployment = {
         allowLocalDeployment = true;
