@@ -97,9 +97,9 @@
       "owner": "adamarbour",
       "repo": "banque",
       "branch": "main",
-      "revision": "e008de513a1eb7af8ea3f7cb0c5f8c004442fd56",
-      "url": "https://github.com/adamarbour/banque/archive/e008de513a1eb7af8ea3f7cb0c5f8c004442fd56.tar.gz",
-      "hash": "sha256-s4aMpVcR/eBMSGkrzQWE4GYRVSG0WHFFOpDPMUVil/c="
+      "revision": "dde5efa9daef1bd601c06b9f835dc8e2f0de1817",
+      "url": "https://github.com/adamarbour/banque/archive/dde5efa9daef1bd601c06b9f835dc8e2f0de1817.tar.gz",
+      "hash": "sha256-j+QLTu1/K4wgNrqK/nLt+4QaEGtimsURWeUB03pFLcE="
     },
     "sops-nix": {
       "type": "GitHub",

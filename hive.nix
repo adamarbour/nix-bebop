@@ -34,6 +34,8 @@ in {
   spike = {
     config = {
       sys.profile = "laptop";
+      sys.users = [ "adam" ];
+      sys.secrets.enable = true;
       time.timeZone = "America/Chicago";
       deployment = {
         allowLocalDeployment = true;

@@ -16,6 +16,9 @@ pkgs.mkShellNoCC {
     disko
     cachix
     nixos-anywhere
+    age
+    sops
+    ssh-to-age
     # keep-sorted end
   ];
 }
