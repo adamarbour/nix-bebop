@@ -14,7 +14,7 @@ in {
     # handle roaming devices better
     systemd.services.automatic-timezoned = {
       serviceConfig = {
-        Type = "oneshot";
+        Type = mkForce "oneshot";
         User = "automatic-timezoned";
       };
       after = [ "network.target" ];
