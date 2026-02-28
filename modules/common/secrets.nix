@@ -3,7 +3,6 @@ let
   inherit (lib) types mkOption mkEnableOption mkIf;
   secretsRepo = sources.secrets;
   c = config.sys.secrets;
-  root = if config.sys.persist.enable then config.sys.persist.storage.path else null;
   users = config.sys.users;
   home = if (_class == "darwin") then "/Users" else "/home";
 in {
@@ -38,7 +37,7 @@ in {
               group = "users";
               mode = "0600";
               # materialize where the user expects it
-              path = "${root}${home}/${name}/.ssh/id_ed25519";
+              path = "${home}/${name}/.ssh/id_ed25519";
             };
             "users/${name}/id_ed25519.pub" = {
               inherit sopsFile;
@@ -46,7 +45,7 @@ in {
               owner = name;
               group = "users";
               mode = "0644";
-              path = "${root}${home}/${name}/.ssh/id_ed25519.pub";
+              path = "${home}/${name}/.ssh/id_ed25519.pub";
             };
           }) { }
         users);

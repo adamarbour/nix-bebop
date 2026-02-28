@@ -3,6 +3,7 @@ let
   inherit (lib) types optional optionalAttrs genAttrs mergeAttrsList mkOption mkIf;
   inherit (lib.bebop) groupExist;
   s = config.sys.secrets;
+  users = config.sys.users;
 in {
   options.sys = {
     primaryUser = mkOption {
@@ -22,7 +23,7 @@ in {
   };
   
   config = {
-    users.users = genAttrs config.sys.users (
+    users.users = genAttrs users (
       name:
       mergeAttrsList [
         (optionalAttrs (_class == "darwin") {
@@ -35,7 +36,7 @@ in {
           
           # Set user password if secrets are enabled...
           hashedPasswordFile = mkIf (s.enable) config.sops.secrets."users/${name}/passwd".path;
-          
+                  
           # Add users ssh key to all hosts users is enabled for.
           openssh.authorizedKeys.keyFiles = mkIf (s.enable) [
             config.sops.secrets."users/${name}/id_ed25519.pub".path
@@ -67,6 +68,12 @@ in {
         })
       ]
     );
+    
+    # workaround for missing file before secrets are deployed
+    systemd.tmpfiles.rules = lib.concatMap (name: [
+      "d /home/${name}/.ssh 0700 ${name} users -"
+      "f /home/${name}/.ssh/id_ed25519.pub 0644 ${name} users -"
+    ]) users;
     
     warnings = optional (config.sys.users == [ ]) ''
       You have not added any users to be supported by your system. You may end up with an unbootable system!
