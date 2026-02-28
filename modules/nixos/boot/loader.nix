@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   inherit (lib) types mkOption mkEnableOption mkDefault;
   c = config.sys.boot;
