@@ -2,6 +2,7 @@
 let
   inherit (lib) types optional optionalAttrs genAttrs mergeAttrsList mkOption;
   inherit (lib.bebop) groupExist;
+  s = config.sys.secrets;
 in {
   options.sys = {
     primaryUser = mkOption {
@@ -31,6 +32,15 @@ in {
           createHome = true;
           home = "/home/${name}";
           isNormalUser = true;
+          
+          # Set user password if secrets are enabled...
+          hashedPasswordFile = mkIf (s.enable) config.sops.secrets."users/${name}/passwd".path;
+          
+          # Add users ssh key to all hosts users is enabled for.
+          openssh.authorizedKeys.keyFiles = mkIf (s.enable) [
+            config.sops.secrets."users/${name}/id_ed25519.pub".path
+          ];
+          
           extraGroups = [ "wheel" "nix" ] ++ groupExist config [
             # keep-sorted start
             "network"
