@@ -2,6 +2,7 @@
 let
   inherit (lib) mkEnableOption mkIf;
   c = config.sys.services.openssh;
+  root = if config.sys.persist.enable then config.sys.persist.storage.path else null;
 in {
   options.sys.services.openssh = {
     enable = mkEnableOption "enable openssh service" // { default = true; };
@@ -56,7 +57,7 @@ in {
       };
       hostKeys = [
         {
-          path = "/etc/ssh/ssh_host_ed25519_key";
+          path = "${root}/etc/ssh/ssh_host_ed25519_key";
           type = "ed25519";
         }
       ];
