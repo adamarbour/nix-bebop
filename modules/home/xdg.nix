@@ -22,6 +22,7 @@ in
         ".cache"
         ".local/share"
         ".local/state"
+        ".ssh"
         "public/share"
         "public/templates"
       ];
