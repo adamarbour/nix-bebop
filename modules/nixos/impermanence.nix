@@ -3,6 +3,7 @@ let
   inherit (builtins) attrNames baseNameOf mapAttrs;
   inherit (lib) genAttrs mkAfter mkOption mkMerge types unique mkIf;
   c = config.sys.persist;
+  users = config.home-manager.users or {};
 in {
   options.sys.persist = {
     enable = mkOption {
@@ -83,7 +84,13 @@ in {
           "/var/log"
         ] ++ c.scratch.directories);
       files = unique ([] ++ c.scratch.files);
-      # TODO: Handle users from sys.users;
+      # Include users directories and files from hm
+      users =
+        mapAttrs (_: user: {
+          directories = unique ([] ++ user.sys.persist.scratch.directories);
+          files = unique user.sys.persist.scratch.files;
+        })
+        users;
     };
     
     # persist with snapshots
@@ -94,7 +101,13 @@ in {
           "/var/lib/nixos"
         ] ++ c.storage.directories);
       files = unique ([] ++ c.storage.files);
-      # TODO: Handle users from sys.users;
+       # Include users directories and files from hm
+      users =
+        mapAttrs (_: user: {
+          directories = unique ([] ++ user.sys.persist.storage.directories);
+          files = unique user.sys.persist.storage.files;
+        })
+        users;
     };
     
   };
