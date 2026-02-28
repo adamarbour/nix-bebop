@@ -1,6 +1,6 @@
 { lib, config, _class, ... }:
 let
-  inherit (lib) types optional optionalAttrs genAttrs mergeAttrsList mkOption;
+  inherit (lib) types optional optionalAttrs genAttrs mergeAttrsList mkOption mkIf;
   inherit (lib.bebop) groupExist;
   s = config.sys.secrets;
 in {
