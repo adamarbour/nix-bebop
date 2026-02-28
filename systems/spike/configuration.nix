@@ -9,6 +9,11 @@
   
   sys.boot = {
     efi.enable = true;
-    secureBoot.enable = false;
+    secureBoot.enable = true;
+  };
+  
+  sys.network.wireguard = {
+    enable = true;
+    address = [ "10.12.34.101/32" ];
   };
 }

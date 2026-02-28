@@ -15,6 +15,7 @@
     ./fail2ban.nix
     ./optimizeTcp.nix
     ./openssh.nix
+    ./wireguard.nix
     # keep-sorted end
   ];
 }
