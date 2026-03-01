@@ -34,18 +34,10 @@
         rootfs = {
           size = "100%";
           content = {
-            type = "luks";
-            name = "enc";
-            settings = {
-              allowDiscards = true;
-              bypassWorkqueues = true;
-            };
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/nix";
-              mountOptions = [ "noatime" ];
-            };
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/nix";
+            mountOptions = [ "noatime" ];
           };
         };
       };
