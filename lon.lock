@@ -97,9 +97,9 @@
       "owner": "adamarbour",
       "repo": "woolong-poker-night",
       "branch": "main",
-      "revision": "e99b66c3407008795429f0a2472a539e7cc8c66f",
-      "url": "https://github.com/adamarbour/woolong-poker-night/archive/e99b66c3407008795429f0a2472a539e7cc8c66f.tar.gz",
-      "hash": "sha256-pPyi9HIlm2dDR97LxN05uvCLu5eyrjc4ifr7Ymzwp8o="
+      "revision": "3f647eb9bfefe66bc2987119b67ca7173a748edf",
+      "url": "https://github.com/adamarbour/woolong-poker-night/archive/3f647eb9bfefe66bc2987119b67ca7173a748edf.tar.gz",
+      "hash": "sha256-U3crD/3vHhMqlqQL82vfyae/Q/nRzBMFzkRNDrYhces="
     },
     "sops-nix": {
       "type": "GitHub",

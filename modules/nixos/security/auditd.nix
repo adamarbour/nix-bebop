@@ -25,16 +25,17 @@ in {
         backlogLimit = 8192;
         failureMode = "printk";
         rules = [
-          "-w /etc/passwd -p wa -k passwd_changes"
-          "-w /etc/shadow -p wa -k shadow_changes"
-          "-w /etc/sudoers -p wa -k sudo_changes"
-          "-w /etc/ssh/sshd_config -p wa -k ssh_changes"
-          "-w /etc/pam.d/ -p wa -k pam_changes"
-          "-w /sbin/insmod -p x -k module_insertion"
-          "-w /sbin/modprobe -p x -k module_insertion"
-          "-a always,exit -F arch=b64 -S execve -k exec_log"
-          "-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time_change"
-          "-e 2"
+          "-w /etc/passwd -p wa -k identity"
+          "-w /etc/group  -p wa -k identity"
+          "-w /etc/shadow -p wa -k identity"
+          "-w /etc/gshadow -p wa -k identity"
+          "-w /etc/sudoers -p wa -k sudo"
+          "-w /etc/sudoers.d -p wa -k sudo"
+          "-w /etc/ssh -p wa -k ssh"
+          
+          "-a always,exit -F arch=b64 -S execve -F euid=0 -k exec_root"
+          "-a always,exit -F arch=b64 -S setuid,setgid,setreuid,setregid,setresuid,setresgid -F auid>=1000 -F auid!=4294967295 -k setid"
+          "-a always,exit -F arch=b64 -S init_module,finit_module,delete_module -k module_change"
         ];
       };
     };

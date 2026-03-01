@@ -49,7 +49,7 @@ in {
     config = {
       sys.profile = "server";
       sys.users = [ "adam" ];
-      sys.secrets.enable = false;
+      sys.secrets.enable = true;
       deployment = {
         tags = [ "infra" ];
         allowLocalDeployment = false;
