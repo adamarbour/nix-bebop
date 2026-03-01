@@ -1,27 +1,34 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) optionals mkEnableOption mkIf mkDefault;
   inherit (config.sys) isServer;
   inherit (config.services) tailscale;
   c = config.sys.services.tailscale;
 in {
   options.sys.services.tailscale = {
     enable = mkEnableOption "enable tailscale service";
+    makeExitNode = mkEnableOption "enable system to be tailscale exit node";
   };
   
   config = mkIf (c.enable) {
     networking.firewall = {
       trustedInterfaces = [ "${tailscale.interfaceName}" ];
-      allowedUDPPorts = [ tailscale.port ];
+      allowedUDPPorts = mkIf isServer [ tailscale.port ];
     };
     
     sys.persist.storage.directories = [ "/var/lib/tailscale" ];
     
     services.tailscale = {
       enable = true;
-      useRoutingFeatures = if isServer then "server" else "client";
-      extraSetFlags = [ "--auto-upgrade=false" ];
-      extraDaemonFlags = [ "--no-logs-no-support" ];
+      permitCertUid = config.sys.primaryUser;
+      useRoutingFeatures = if c.makeExitNode then "server" else "client";
+      
+      extraSetFlags = [
+      ] ++ optionals c.makeExitNode [
+        "--advertise-exit-node"
+      ];
+      
+      disableUpstreamLogging = mkDefault true;
     };
     
     systemd.services.tailscaled.serviceConfig.Environment = [ 

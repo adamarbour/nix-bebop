@@ -4,8 +4,6 @@
     (import ./disk.nix { device = "/dev/vda"; })
   ];
   
-  sys.services.tailscale.enable = false;
-  
   sys.boot = {
     efi.enable = false;
     bios.device = "/dev/vda";

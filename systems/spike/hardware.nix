@@ -10,6 +10,10 @@
     yubikey.enable = true;
   };
   # Additional tweaks specific for this system...
+  boot.kernelParams = [
+    "mem_sleep_default=s2idle"
+    "amd_pstate=active"
+  ];
   hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
   networking.networkmanager.wifi.powersave = false;
   networking.wireless.iwd.settings.Settings.PowerSave = false;
