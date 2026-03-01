@@ -6,7 +6,12 @@ let
 in {  
   config = {
     users.users.root = mkMerge [
-    		{ shell = pkgs.bashInteractive; }
+    		{
+    		  shell = pkgs.bashInteractive;
+      		  openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHTMrsoakrXlUWq3kDT+bKgPqfMX0FgLxiKsTkaO4WX8"
+        ];
+    		}
     		(mkIf (secrets.enable) {
     			hashedPasswordFile = config.users.users.${primaryUser}.hashedPasswordFile;
     		})

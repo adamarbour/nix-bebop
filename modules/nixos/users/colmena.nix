@@ -13,7 +13,7 @@ in {
       shell = pkgs.bashInteractive;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDmKBN5jUyczgWuYmTdtcrtYY+us0nW2kEqHz7nhF0P"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHTMrsoakrXlUWq3kDT+bKgPqfMX0FgLxiKsTkaO4WX8"
       ];
     };
     
