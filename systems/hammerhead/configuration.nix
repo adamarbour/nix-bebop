@@ -11,9 +11,4 @@
     bios.device = "/dev/vda";
   };
   sys.hw.virtual.enable = true;
-  
-  sys.network.wireguard = {
-    enable = true;
-    address = [ "10.12.34.251/32" ];
-  };
 }
