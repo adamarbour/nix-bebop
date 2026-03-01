@@ -48,10 +48,12 @@ in {
   hammerhead = {
     config = {
       sys.profile = "server";
+      sys.users = [ "adam" ];
+      sys.secrets.enable = false;
       deployment = {
         tags = [ "infra" ];
         allowLocalDeployment = false;
-        targetHost = "172.245.210.47";
+        targetHost = "172.245.210.47"; # pub: 172.245.210.47
         targetUser = "colmena";
       };
       nixpkgs.hostPlatform = "x86_64-linux";
