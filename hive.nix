@@ -39,6 +39,8 @@ in {
       time.timeZone = "America/Chicago";
       deployment = {
         allowLocalDeployment = true;
+        targetHost = "10.12.34.101";
+        targetUser = "adam";
       };
       nixpkgs.hostPlatform = "x86_64-linux";
     };
@@ -53,7 +55,7 @@ in {
       deployment = {
         tags = [ "infra" ];
         allowLocalDeployment = false;
-        targetHost = "172.245.210.47"; # pub: 172.245.210.47
+        targetHost = "10.12.34.56"; # pub: 172.245.210.47
         targetUser = "colmena";
       };
       nixpkgs.hostPlatform = "x86_64-linux";

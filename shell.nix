@@ -20,6 +20,7 @@ pkgs.mkShellNoCC {
     sops
     ssh-to-age
     wireguard-tools
+    stunner
     # keep-sorted end
   ];
 }
