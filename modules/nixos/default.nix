@@ -11,6 +11,7 @@
     ./security
     ./environment
     ./services
+    ./virtualization
     ./extras.nix
     ./impermanence.nix
     ./secrets.nix

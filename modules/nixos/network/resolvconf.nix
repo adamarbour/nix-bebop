@@ -10,7 +10,6 @@ in {
       llmnr = "true";
       dnsovertls = "true";
       dnssec = "allow-downgrade";
-      domains = [ "~." ];
       fallbackDns = mkForce [  ];
     };
     networking.resolvconf.enable = mkForce false;
