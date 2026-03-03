@@ -31,6 +31,16 @@
       "url": "https://github.com/nix-community/disko/archive/4707eec8d1d2db5182ea06ed48c820a86a42dc13.tar.gz",
       "hash": "sha256-GnqdqhrguKNN3HtVfl6z+zbV9R9jhHFm3Z8nu7R6ml0="
     },
+    "flake-compat": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "nixos",
+      "repo": "flake-compat",
+      "branch": "master",
+      "revision": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+      "url": "https://github.com/nixos/flake-compat/archive/5edf11c44bc78a0d334f6334cdaf7d60d732daab.tar.gz",
+      "hash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns="
+    },
     "home-manager": {
       "type": "GitHub",
       "fetchType": "tarball",
@@ -50,6 +60,26 @@
       "revision": "7b1d382faf603b6d264f58627330f9faa5cba149",
       "url": "https://github.com/nix-community/impermanence/archive/7b1d382faf603b6d264f58627330f9faa5cba149.tar.gz",
       "hash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y="
+    },
+    "matugen": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "InioX",
+      "repo": "matugen",
+      "branch": "main",
+      "revision": "322cd48ca83d0fc0a983dac63054cc443db9c2d4",
+      "url": "https://github.com/InioX/matugen/archive/322cd48ca83d0fc0a983dac63054cc443db9c2d4.tar.gz",
+      "hash": "sha256-6b1p9DhnTmfHp/woOLV0rGpMi00/DkR0mWwlpWtYdmQ="
+    },
+    "microvm": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "microvm-nix",
+      "repo": "microvm.nix",
+      "branch": "main",
+      "revision": "9d1ff9b53532908a5eba7707931c9093508b6b92",
+      "url": "https://github.com/microvm-nix/microvm.nix/archive/9d1ff9b53532908a5eba7707931c9093508b6b92.tar.gz",
+      "hash": "sha256-9XcwtSIL/c+pkC3SBNuxCJuSktFOBV1TLvvkhekyB8I="
     },
     "nix-topology": {
       "type": "GitHub",
@@ -90,6 +120,16 @@
       "revision": "0182a361324364ae3f436a63005877674cf45efb",
       "url": "https://github.com/nixos/nixpkgs/archive/0182a361324364ae3f436a63005877674cf45efb.tar.gz",
       "hash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ="
+    },
+    "quadlet": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "SEIAROTg",
+      "repo": "quadlet-nix",
+      "branch": "main",
+      "revision": "f4ae60350ea6015b6560cbd0e1f11f7e195c993d",
+      "url": "https://github.com/SEIAROTg/quadlet-nix/archive/f4ae60350ea6015b6560cbd0e1f11f7e195c993d.tar.gz",
+      "hash": "sha256-6pOOPOQr4rtgShBtkLkSDTql5rRqcUgTRz8O+axK2eM="
     },
     "secrets": {
       "type": "GitHub",

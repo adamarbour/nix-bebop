@@ -9,6 +9,7 @@
     ./profiles.nix
     ./roles.nix
     ./xdg.nix
+    ./extras.nix
     # keep-sorted end
   ];
 }
