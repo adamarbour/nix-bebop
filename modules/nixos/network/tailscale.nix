@@ -24,6 +24,7 @@ in {
       useRoutingFeatures = if c.makeExitNode then "server" else "client";
       
       extraSetFlags = [
+        "--accept-dns" "--accept-routes"
       ] ++ optionals c.makeExitNode [
         "--advertise-exit-node"
       ];
