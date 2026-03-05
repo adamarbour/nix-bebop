@@ -81,6 +81,16 @@
       "url": "https://github.com/microvm-nix/microvm.nix/archive/9d1ff9b53532908a5eba7707931c9093508b6b92.tar.gz",
       "hash": "sha256-9XcwtSIL/c+pkC3SBNuxCJuSktFOBV1TLvvkhekyB8I="
     },
+    "nix-cachyos-kernel": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "xddxdd",
+      "repo": "nix-cachyos-kernel",
+      "branch": "master",
+      "revision": "e8fd643d687214fe86872535abebf3c74eab1a37",
+      "url": "https://github.com/xddxdd/nix-cachyos-kernel/archive/e8fd643d687214fe86872535abebf3c74eab1a37.tar.gz",
+      "hash": "sha256-YgPbdaolFOsAAL1hPTsyymhKfqo6i3PpqZDbP/eRRXE="
+    },
     "nix-topology": {
       "type": "GitHub",
       "fetchType": "tarball",
