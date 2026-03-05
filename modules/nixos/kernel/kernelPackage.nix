@@ -4,9 +4,9 @@ let
   sys = config.sys;
   c = config.sys.boot;
 
-  defaultKernel = if (sys.isGraphical) then pkgs.linuxPackages_zen
-    else if (sys.isServer) then pkgs.linuxPackages_hardened
-    else pkgs.linuxPackages_latest;
+  defaultKernel = if (sys.isGraphical) then pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto
+    else if (sys.isServer) then pkgs.cachyosKernels.linuxPackages-cachyos-server-lto
+    else pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
 in {
   options.sys.boot = {
     kernel = mkOption {
@@ -18,8 +18,6 @@ in {
   };
 
   config = {
-    boot = {
-      kernelPackages = mkOverride 500 c.kernel;
-    };
+    boot.kernelPackages = mkOverride 500 c.kernel;
   };
 }

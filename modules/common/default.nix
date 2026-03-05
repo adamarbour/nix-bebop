@@ -5,6 +5,7 @@
     ./nix/nix.nix
     ./nix/settings.nix
     ./nix/tools.nix
+    ./nix/substituters.nix
     ./system/fonts.nix
     ./system/version.nix
     ./system/packages.nix
