@@ -4,7 +4,7 @@ let
   sys = config.sys;
   c = config.sys.boot;
 
-  defaultKernel = if (sys.isGraphical) then pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto
+  defaultKernel = if (sys.isGraphical) then pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto
     else if (sys.isServer) then pkgs.cachyosKernels.linuxPackages-cachyos-server-lto
     else pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
 in {
