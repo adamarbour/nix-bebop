@@ -8,5 +8,8 @@ in {
     hm.services.udiskie.enable = mkDefault true;
     
     # sane programs
+    hm.programs.nix-index.enable = mkDefault true;
+    hm.programs.pay-respects.enable = mkDefault true;
+    hm.programs.tealdeer.enable = mkDefault true;
   };
 }
