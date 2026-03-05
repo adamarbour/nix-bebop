@@ -22,5 +22,9 @@ in {
       dynamicBoost = mkDefault true;
       finegrainedPM = mkDefault true;
     };
+    
+    # MISC
+    # save backlight status between reboots
+    sys.persist.scratch.directories = [ "/var/lib/systemd/backlight" ];
   };
 }
