@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  inherit (builtins) attrNames baseNameOf mapAttrs;
+  inherit (builtins) attrNames baseNameOf hasAttr mapAttrs;
   inherit (lib) genAttrs mkAfter mkOption mkMerge types unique mkIf;
   c = config.sys.persist;
   users = config.home-manager.users or {};
@@ -72,7 +72,20 @@ in {
   
   config = mkIf (c.enable) {
     programs.fuse.userAllowOther = true;
-    fileSystems."${c.path}".neededForBoot = true;
+    fileSystems = let
+     userDirs = type:
+        map (x: x.dirPath)
+        (builtins.filter (d: builtins.substring 0 1 d.directory != "." && d.home != null)
+          config.environment.persistence."${c."${type}".path}".directories);      
+    in mkMerge [
+      # hint gvfs that these mounts support trash (where applicable)
+      (
+        genAttrs
+          ((userDirs "scratch") ++ (userDirs "storage"))
+          (_: {options = ["x-gvfs-trash"];})
+      )
+      { "${c.path}".neededForBoot = true; }
+    ];
     
     # persist without snapshots
     environment.persistence."${c.scratch.path}" = {
