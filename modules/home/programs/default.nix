@@ -8,6 +8,7 @@
     ./direnv.nix
     ./carapace.nix
     ./starship.nix
+    ./mango.nix
     # keep-sorted end
   ];
 }
