@@ -21,6 +21,16 @@
       "url": "https://github.com/zhaofengli/colmena/archive/5fdd743a11e7291bd8ac1e169d62ba6156c99be4.tar.gz",
       "hash": "sha256-01bfuSY4gnshhtqA1EJCw2CMsKkAx+dHS+sEpQ2+EAQ="
     },
+    "direnv-instant": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "Mic92",
+      "repo": "direnv-instant",
+      "branch": "main",
+      "revision": "36f1e18aebf51392347ea05b3d69bb2ab9540523",
+      "url": "https://github.com/Mic92/direnv-instant/archive/36f1e18aebf51392347ea05b3d69bb2ab9540523.tar.gz",
+      "hash": "sha256-JnMhZ4HrpBzzDY6pDCsDXrlljhW+Y/bwlC7lG8ExUMo="
+    },
     "disko": {
       "type": "GitHub",
       "fetchType": "tarball",
@@ -60,6 +70,16 @@
       "revision": "7b1d382faf603b6d264f58627330f9faa5cba149",
       "url": "https://github.com/nix-community/impermanence/archive/7b1d382faf603b6d264f58627330f9faa5cba149.tar.gz",
       "hash": "sha256-03+JxvzmfwRu+5JafM0DLbxgHttOQZkUtDWBmeUkN8Y="
+    },
+    "mango": {
+      "type": "GitHub",
+      "fetchType": "tarball",
+      "owner": "mangowm",
+      "repo": "mango",
+      "branch": "main",
+      "revision": "9a17a0279c39b330d155d50282d1d2641d519dc3",
+      "url": "https://github.com/mangowm/mango/archive/9a17a0279c39b330d155d50282d1d2641d519dc3.tar.gz",
+      "hash": "sha256-c2X+x/D8txqV5UaN6TYYh9PEXyMaWVZl4mAQ0Sl21f8="
     },
     "matugen": {
       "type": "GitHub",
