@@ -1,16 +1,17 @@
 { lib, config, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
-  c = config.hm.programs.carapace;
+  c = config.hm.programs.starship;
   zsh = config.programs.zsh;
 in {
   options.hm.programs = {
-    carapace.enable = mkEnableOption "enable multi-shell completion";
+    starship.enable = mkEnableOption "enable starship prompt";
   };
   
   config = mkIf (c.enable) {
-    programs.carapace = {
+    programs.starship = {
       enable = true;
+      enableInteractive = true;
       enableBashIntegration = true;
       enableZshIntegration = zsh.enable; 
     };
