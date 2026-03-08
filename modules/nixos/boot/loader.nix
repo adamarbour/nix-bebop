@@ -1,9 +1,22 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, sources, ... }:
 let
-  inherit (lib) types mkOption mkEnableOption mkDefault;
+  inherit (lib) types mkIf mkOption mkEnableOption mkMerge mkDefault mkForce;
+  lanzaboote = import sources.lanzaboote { inherit pkgs; };
   c = config.sys.boot;
 in {
+  imports = [ lanzaboote.nixosModules.lanzaboote ];
+  
   options.sys.boot = {
+    loader = mkOption {
+      type = types.enum [
+        "none"
+        "grub"
+        "systemd"
+        "lanzaboote"
+      ];
+      default = "systemd";
+      description = "The bootloader that should be used for the device.";
+    };
     efi = {
       enable = mkOption {
         type = types.bool;
@@ -27,54 +40,55 @@ in {
         device to install bios version of limine to.
       '';
     };
-    secureBoot = {
-      enable = mkEnableOption "enable secure boot";
-    };
   };
   
-  config = {
-    boot.loader.efi.canTouchEfiVariables = c.efi.canTouchVars;
+  config = mkMerge [
+    {
+      boot.loader.efi.canTouchEfiVariables = c.efi.canTouchVars;
+      environment.systemPackages = with pkgs; [ sbctl ];
+      sys.persist.storage.directories = [ "/var/lib/sbctl" ];
+    }
     
-    boot.loader.limine = {
-      enable = true;
-      enableEditor = mkDefault false;
-      
-      # bios
-      biosSupport = (!c.efi.enable);
-      biosDevice = c.bios.device;
-      
-      # efi
-      efiSupport = c.efi.enable;
-      
-      # secure
-      secureBoot.enable = c.secureBoot.enable;
-      panicOnChecksumMismatch = c.secureBoot.enable;
-      validateChecksums = c.secureBoot.enable;
-    };
+    # none
+    (mkIf (c.loader == "none") {
+      boot.loader = {
+        grub.enable = mkForce false;
+        systemd-boot.enable = mkForce false;
+      };
+    })
     
-    environment.systemPackages = with pkgs; [ sbctl ];
-    sys.persist.storage.directories = [ "/var/lib/sbctl" ];
+    # grub for bios
+    (mkIf (c.loader == "grub") {
+      boot.loader.grub = {
+        enable = true;
+        inherit (c.bios) device;
+        useOSProber = mkDefault false;
+        efiSupport = c.efi.enable;
+        theme = null;
+        backgroundColor = null;
+        splashImage = null;
+      };
+    })
     
-    assertions = [
-      {
-        assertion = !(c.secureBoot.enable && !c.efi.enable);
-        message = ''
-          Secure Boot requires EFI to be enabled.
-          Set sys.boot.efi.enable = true when enabling sys.boot.secureBoot.enable.
-        '';
-      }
-    ];
+    # systemd for efi
+    (mkIf (c.loader == "systemd") {
+      boot.loader.systemd-boot = {
+        enable = true;
+        consoleMode = mkDefault "max";
+        editor = false;
+      };
+    })
     
-    warnings =
-      lib.optional c.secureBoot.enable ''
-        Secure Boot is enabled.
-
-        Make sure you have enrolled your keys using sbctl
-        before rebooting, otherwise the system may fail to boot.
-
-        Example:
-          sbctl create-keys
-          sbctl enroll-keys
-      '';
-  };
+    # lanzaboote for secureboot
+    (mkIf (c.loader == "lanzaboote") {
+      boot.loader.grub.enable = mkForce false;
+      boot.loader.systemd-boot.enable = mkForce false;
+      boot.lanzaboote = {
+        enable = true;
+        autoGenerateKeys.enable = true;
+        autoEnrollKeys.enable = true;
+        pkiBundle = "/var/lib/sbctl";
+      };
+    })
+  ];
 }
