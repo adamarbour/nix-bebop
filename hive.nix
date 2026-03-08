@@ -61,4 +61,25 @@ in {
       nixpkgs.hostPlatform = "x86_64-linux";
     };
   };
+  
+  #  █████╗  ██████╗  ███████╗  █████╗  ██╗      ███╗   ███╗ ███████╗
+  # ██╔══██╗ ██╔══██╗ ██╔════╝ ██╔══██╗ ██║      ████╗ ████║ ██╔════╝
+  # ╚██████║ ██████╔╝ █████╗   ███████║ ██║      ██╔████╔██║ ███████╗
+  #  ╚═══██║ ██╔══██╗ ██╔══╝   ██╔══██║ ██║      ██║╚██╔╝██║ ╚════██║
+  #  █████╔╝ ██║  ██║ ███████╗ ██║  ██║ ███████╗ ██║ ╚═╝ ██║ ███████║
+  #  ╚════╝  ╚═╝  ╚═╝ ╚══════╝ ╚═╝  ╚═╝ ╚══════╝ ╚═╝     ╚═╝ ╚══════╝
+  # asgard :: i5-9600K @ 3.7Ghz / 32GB / 256GB :: 14.6TBx3 (NAS) | 1.9TBx4 (Ceph) | 954GBx1 (nflix)
+  asgard = {
+    config = {
+      sys.profile = "server";
+      sys.secrets.enable = true;
+      deployment = {
+        tags = [ "lab" "infra" ];
+        allowLocalDeployment = false;
+        targetHost = "10.12.34.71";
+        targetUser = "colmena";
+      };
+      nixpkgs.hostPlatform = "x86_64-linux";
+    };
+  };
 }
