@@ -9,6 +9,7 @@ in {
       # keep-sorted start
       udiskie.enable = mkDefault true;
       kdeconnect.enable = mkDefault true;
+      gnome-keyring.enable = mkDefault true;
       # keep-sorted end
     };
     
