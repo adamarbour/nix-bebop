@@ -5,8 +5,8 @@ let
   c = config.sys.boot;
 
   defaultKernel = if (sys.isGraphical) then pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto
-    else if (sys.isServer) then pkgs.cachyosKernels.linuxPackages-cachyos-server-lto
-    else pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
+    else if (sys.isServer) then pkgs.linuxPackages
+    else pkgs.linuxPackages_xanmod_latest;
 in {
   options.sys.boot = {
     kernel = mkOption {

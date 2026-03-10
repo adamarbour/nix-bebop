@@ -62,6 +62,7 @@ in {
       boot.loader.grub = {
         enable = true;
         inherit (c.bios) device;
+        devices = mkForce [ c.bios.device ];
         useOSProber = mkDefault false;
         efiSupport = c.efi.enable;
         theme = null;

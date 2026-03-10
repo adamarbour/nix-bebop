@@ -20,7 +20,10 @@ in {
     
     services.tailscale = {
       enable = true;
-      permitCertUid = config.sys.primaryUser;
+      
+      # Hand this off to caddy if enabled
+      permitCertUid = if config.services.caddy.enable then config.services.caddy.user
+        else config.sys.primaryUser;
       useRoutingFeatures = if c.makeExitNode then "server" else "client";
       
       extraSetFlags = [
