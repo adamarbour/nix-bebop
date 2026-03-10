@@ -1,13 +1,12 @@
 {
   imports = [
-    ./gnome.nix
+    ./gnome.nix   # TEMP
     ./network.nix
     ./hardware.nix
     (import ./disk.nix { device = "/dev/nvme0n1"; })
   ];
   
-  sys.boot = {
-    efi.enable = true;
-    secureBoot.enable = true;
+  sys = {
+    boot.loader = "lanzaboote";
   };
 }

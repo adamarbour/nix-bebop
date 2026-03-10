@@ -16,4 +16,10 @@ in {
       persistentKeepalive = 25;
     }];
   };
+  systemd.services."wg-quick-wg0".serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "10s";
+    StartLimitIntervalSec = "5min";
+    StartLimitBurst = "20";
+  };
 }
